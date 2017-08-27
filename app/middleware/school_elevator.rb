@@ -8,14 +8,15 @@ class SchoolElevator < Apartment::Elevators::Generic
     if user.nil?
       ActiveRecord::Base.connection.current_database
     else
-
-    suffix = unless Rails.env == 'production'
-               Rails.env
-             else
-               ''
-             end
-    return "school_#{user[:school_id]}_#{suffix}"
+      SchoolElevator.tenant(user[:school_id])
     end
+  end
 
+  def self.tenant(school_id)
+    unless Rails.env == 'production'
+      "school_#{school_id}_#{Rails.env}"
+    else
+      "school_#{school_id}"
+    end
   end
 end

@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170827105126) do
   end
 
   create_table "tenants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "school_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

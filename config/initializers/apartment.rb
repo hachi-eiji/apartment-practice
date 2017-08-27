@@ -47,7 +47,12 @@ Apartment.configure do |config|
   #   end
   # end
   #
-  config.tenant_names = lambda { Tenant.pluck :name }
+  config.tenant_names = lambda {
+    school_ids = Tenant.pluck :school_id
+    school_ids.map do |school_id|
+      SchoolElevator.tenant(school_id)
+    end
+  }
 
   #
   # ==> PostgreSQL only options
@@ -87,7 +92,7 @@ end
 #   request.host.split('.').first
 # }
 
-#Rails.application.config.middleware.use SchoolElevator
+Rails.application.config.middleware.use SchoolElevator
 # Rails.application.config.middleware.use 'Apartment::Elevators::Domain'
-Rails.application.config.middleware.use Apartment::Elevators::Subdomain
+#Rails.application.config.middleware.use Apartment::Elevators::Subdomain
 # Rails.application.config.middleware.use 'Apartment::Elevators::FirstSubdomain'
