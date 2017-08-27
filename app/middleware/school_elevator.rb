@@ -8,7 +8,7 @@ class SchoolElevator < Apartment::Elevators::Generic
     if user.nil?
       ActiveRecord::Base.connection.current_database
     else
-      SchoolElevator.tenant(user[:school_id])
+      ::SchoolElevator.tenant(user[:school_id])
     end
   end
 
