@@ -87,7 +87,7 @@ end
 #   request.host.split('.').first
 # }
 
-Rails.application.config.middleware.use SchoolElevator
+#Rails.application.config.middleware.use SchoolElevator
 # Rails.application.config.middleware.use 'Apartment::Elevators::Domain'
-#Rails.application.config.middleware.use Apartment::Elevators::Subdomain
+Rails.application.config.middleware.use Apartment::Elevators::Subdomain
 # Rails.application.config.middleware.use 'Apartment::Elevators::FirstSubdomain'
